@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell
-    x:Class="Silencer.AppShell"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Silencer"
-    Title="Silencer">
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:Silencer"
+       xmlns:pages="clr-namespace:Silencer.Pages"
+       x:Class="Silencer.AppShell"
+       Shell.TabBarIsVisible="True">
 
-    <ShellContent
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <Tab Title="Home">
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
+        </Tab>
+        
+        <Tab Title="Manage">
+            <ShellContent ContentTemplate="{DataTemplate pages:ManagePage}" />
+        </Tab>
+        
+        <Tab Title="Console">
+            <ShellContent ContentTemplate="{DataTemplate pages:ConsolePage}" />
+        </Tab>
+    </TabBar>
 
 </Shell>
