@@ -2,10 +2,62 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Silencer.Pages.ConsolePage"
-             Title="Manage">
-    
-    <StackLayout Padding="20">
-        <Label Text="Console Page" FontSize="24" HorizontalOptions="Center" />
-    </StackLayout>
-    
+             Title="Console"
+             BackgroundColor="Black">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <!-- Terminal Header -->
+        <Label Grid.Row="0" 
+               Text="Silencer Terminal v1.0"
+               TextColor="#00FF00"
+               FontFamily="Courier New"
+               FontSize="14"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"/>
+
+        <!-- Logs Display -->
+        <ScrollView Grid.Row="1" x:Name="LogScrollView">
+            <CollectionView ItemsSource="{Binding Logs}"
+                            BackgroundColor="Black">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10,2">
+                            <Label FontFamily="Courier New"
+                                   FontSize="12"
+                                   LineBreakMode="WordWrap">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding FormattedTime}" 
+                                              TextColor="#888888"/>
+                                        <Span Text=" [" 
+                                              TextColor="#888888"/>
+                                        <Span Text="{Binding Level}" 
+                                              TextColor="{Binding LevelColor}"/>
+                                        <Span Text="] " 
+                                              TextColor="#888888"/>
+                                        <Span Text="{Binding Message}" 
+                                              TextColor="#00FF00"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+
+        <!-- Clear Button -->
+        <Button Grid.Row="2"
+                Text="Clear Logs"
+                BackgroundColor="#333333"
+                TextColor="#00FF00"
+                FontFamily="Courier New"
+                Clicked="OnClearLogsClicked"/>
+    </Grid>
 </ContentPage>
